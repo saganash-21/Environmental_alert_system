@@ -16,16 +16,37 @@ This project uses an Arduino to monitor environmental conditions like **temperat
 | Buzzer          | 1        | Alarm signal                       |
 | Breadboard + jumper wires | N/A | For wiring                     |
 
+
+
+### Connections:
+- **NTC Thermistor:** One leg to **A1**, other to **GND**, 10k pull-up to **5V**
+- **LDR:** One leg to **A0**, other to **5V**, 10k pull-down to **GND**
+- **Buzzer:** Digital pin **12**
+- **LED for Temp Warning:** Digital pin **13**
+- **LED for LDR Alert:** Digital pin **11**
+- **Normal Temp LED:** Digital pin **10**
+
+---
+
+
 ## 🧠 Logic Overview
 
-- **LDR**: If light level is too low → buzzer + alert LED turn on.
-- **NTC Thermistor**: If temperature > 42°C → buzzer + temp LED trigger.
+### 🌙 Light Detection (LDR)
+- If ambient light drops below a certain analog threshold (`<= 400`), a buzzer and alert LED are activated.
 
-## 📷 Real Components
+### 🌡️ Temperature Detection (NTC Thermistor)
+- The NTC thermistor reduces its resistance as temperature rises.
+- Analog value is read and converted to voltage, then to temperature in °C.
+- If temperature exceeds 42°C, a red LED and buzzer go off.
 
-![Thermistor and LDR](images/thermistor_photo.jpg)
 
 ## 📟 Serial Output Sample
+
+========= LDR ALARM ACTIVATED ========
+Temperature: 39.5 °C
+LDR ALARM DEACTIVATED
+Temperature: 43.2 °C
+🔥 Temperature TOO HIGH!
 
 
 ## 💾 How to Upload
